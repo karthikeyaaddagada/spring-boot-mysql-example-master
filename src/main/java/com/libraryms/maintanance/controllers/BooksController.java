@@ -58,8 +58,8 @@ public class BooksController
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value ="shelf/{shelfId}/books/{bookId}")
-    public void deleteBooks(@PathVariable int booksId) 
+    public void deleteBooks(@PathVariable int bookId) 
     {
-    	booksService.deleteBooks(booksId);
+    	booksService.deleteBooks(bookId);
     }
 }

@@ -6,7 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Books {
@@ -21,7 +25,8 @@ public class Books {
 	private String author;
 	@ManyToOne
 	@JoinColumn(name = "shelfid")
-	@JsonIgnore
+	@JsonIgnore // ella anni SIgnore cheyandi ok
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Shelf shelf;
 
 	public Shelf getShelf() {

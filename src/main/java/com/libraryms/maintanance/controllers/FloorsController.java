@@ -26,7 +26,7 @@ public class FloorsController
     {
     	return floorsService.getAllFloors(lid);
     }
-	@RequestMapping("/library/{lid}/floors/{floorId}")
+	@RequestMapping("/library/{lid}/floors/{fid}")
     public Floors getFloors(@PathVariable int fid) 
     {
     	return floorsService.getFloors(fid);
@@ -35,19 +35,23 @@ public class FloorsController
 	@RequestMapping(method=RequestMethod.POST, value="/library/{lid}/floors")
 	public void addFloors(@RequestBody Floors floors, @PathVariable("lid") int lid)
 	{
-		floors.setLibrary(new Library());
-	     floorsService.addFloors(floors);	
+		Library library = new Library();
+		library.setLid(lid);
+		floors.setLibrary(library);
+	     floorsService.updateFloors(floors);	
 	}
 
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/library/{lid}/floors/{floorId}")
-	public void updateFloors(@RequestBody Floors floors, @PathVariable("lid") int lid, @PathVariable("Lid") int fid)
+	@RequestMapping(method=RequestMethod.PUT, value="/library/{lid}/floors/{fid}")
+	public void updateFloors(@RequestBody Floors floors, @PathVariable("lid") int lid, @PathVariable("fid") int fid)
 	{
- 		floors.setLibrary(new Library());
-	     floorsService.updateFloors(floors);	
+		Library library = new Library();
+		library.setLid(lid);
+		floors.setLibrary(library);
+	     floorsService.addFloors(floors);	
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value ="/library/{lid}/floors/{floorId}")
+	@RequestMapping(method=RequestMethod.DELETE, value ="/library/{lid}/floors/{fid}")
     public void deleteFloors(@PathVariable int fid) 
     {
     	floorsService.deleteFloors(fid);

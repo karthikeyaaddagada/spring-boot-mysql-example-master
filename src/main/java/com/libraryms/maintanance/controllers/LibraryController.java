@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.libraryms.maintanance.domain.Library;
+import com.libraryms.maintanance.model.LibraryModel;
 import com.libraryms.maintanance.services.LibraryService;
 
 @RestController
@@ -21,14 +22,14 @@ public class LibraryController
     @Autowired
 	private LibraryService libraryService;
 	
-	
 	@RequestMapping("/library")
-    public List<Library> getAllLibrary()
+    public List<LibraryModel> getAllLibrary()
     {
     	return libraryService.getAllLibrary();
     }
+   
 	@RequestMapping("/library/{lid}")
-    public Library getLibrary(@PathVariable int lid) 
+    public LibraryModel getLibrary(@PathVariable int lid) 
     {
     	return libraryService.getLibrary(lid);
     }

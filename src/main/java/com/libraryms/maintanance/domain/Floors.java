@@ -10,7 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Floors {
@@ -20,6 +24,7 @@ public class Floors {
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name = "library_lid")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Library library;
 
 	public Library getLibrary() {
@@ -51,7 +56,8 @@ public class Floors {
 	{
 	super();
 	this.fid=fid;
-	this.library=new Library(lid,"", null, null, null, null, lid);
+	this.library=new Library();
+	library.setLid(lid);
 	}
 
 	public int getFid() {

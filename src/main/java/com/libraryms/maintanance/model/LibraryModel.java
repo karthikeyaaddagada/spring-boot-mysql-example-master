@@ -1,57 +1,44 @@
-package com.libraryms.maintanance.domain;
+package com.libraryms.maintanance.model;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
 
 
-@Entity
-public class Library
+
+public class LibraryModel
 {
 
-	@Id
-	@Column(name = "lid")
+	
 	private int lid;
-	@Column(name = "name")
+
 	private String name;
-	@Column(name = "address")
+	
 	private String address;
-	@Column(name = "streetName")
+	
 	private String streetName;
-	@Column(name = "city")
+	
 	private String city;
-	@Column(name = "state")
+	
 	private String state;
-	@Column(name = "zip")
+	
 	private int zip;
 	
-	@OneToMany(mappedBy="library")
-	@JsonIgnore
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	public Set<Floors> floors = new HashSet<>();
 	
-	public Set<Floors> getFloors() {
+	public Set<FloorsModel> floors = new HashSet<>();
+	
+	public Set<FloorsModel> getFloors() {
 		return floors;
 	}
-	public void setFloors(Set<Floors> floors) {
+	public void setFloors(Set<FloorsModel> floors) {
 		this.floors = floors;
 	}
 	
-	public Library()
+	public LibraryModel()
 	{
 		
 	}
-	public Library(int lid,String name,String address,String streetname,String city,String state,int zip)
+	public LibraryModel(int lid,String name,String address,String streetname,String city,String state,int zip)
 	{
 		super();
 		this.lid=lid;

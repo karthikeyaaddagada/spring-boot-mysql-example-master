@@ -10,7 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Shelf
@@ -25,6 +29,7 @@ public class Shelf
 	@ManyToOne
 	@JoinColumn(name="fid")
 	@JsonIgnore
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Floors floors;
     public Floors getFloors()
     {
